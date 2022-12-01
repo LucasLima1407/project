@@ -4,8 +4,9 @@ import org.springframework.stereotype.Service;
 
 import br.com.java.data.vo.v2.AdminVOV2;
 import br.com.java.modal.Admin;
+import jakarta.persistence.Table;
 
-@Service
+@Table
 public class AdmMapper {
 
 	public AdminVOV2 convertEntityToVo(Admin admin) {

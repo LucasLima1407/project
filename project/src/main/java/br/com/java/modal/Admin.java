@@ -17,11 +17,8 @@ public class Admin  implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
-	@Column(nullable = false, length = 10)
 	private String login;
-	@Column(nullable = false, length = 10)
 	private String senha;
-	@Column(nullable = false, length = 30)
 	private String nome;
 
 	

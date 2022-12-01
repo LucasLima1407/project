@@ -14,10 +14,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.java.data.vo.v1.AdminVO;
-import br.com.java.modal.Admin;
-import br.com.java.modal.Produto;
-import br.com.java.services.AdminServices;
+import br.com.java.data.vo.v1.ProdutoVO;
+import br.com.java.services.ProdutoServices;
 
 
 
@@ -25,34 +23,35 @@ import br.com.java.services.AdminServices;
 @RestController
 public class AdminController {
 	
+	
 	@Autowired
-	public AdminServices service;
+	public ProdutoServices services;
 	
 	
-	@GetMapping(value = "/adm",produces = MediaType.APPLICATION_JSON_VALUE)
-	public List<AdminVO> findAll() {
-		return service.findAll();
+	@GetMapping(value = "/produtos",produces = MediaType.APPLICATION_JSON_VALUE)
+	public List<ProdutoVO> findAll() {
+		return services.findAll();
 	}
 	@GetMapping(value = "/{id}",
 			produces = MediaType.APPLICATION_JSON_VALUE)
-	public AdminVO findById(@PathVariable(value = "id") Long id) {
-		return service.findById(id);
+	public ProdutoVO findById(@PathVariable(value = "id") Long id) {
+		return services.findById(id);
 	}
 	@PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE,
 			produces = MediaType.APPLICATION_JSON_VALUE)
-	public AdminVO update(@RequestBody AdminVO admin) {
-		return service.update(admin);
+	public ProdutoVO update(@RequestBody ProdutoVO produto) {
+		return services.update(produto);
 	}
 	@DeleteMapping(value = "/{id}")
 	public ResponseEntity<?> delete(@PathVariable(value = "id") Long id) {
-		service.delete(id);
+		services.delete(id);
 		return ResponseEntity.noContent().build();
 	}
 	
-	@PostMapping(value = "/createProduto", produces = MediaType.APPLICATION_JSON_VALUE,
+	@PostMapping(value = "/createproduto", produces = MediaType.APPLICATION_JSON_VALUE,
 			consumes = MediaType.APPLICATION_JSON_VALUE)
-	public Produto create(Produto produto) {
-			return service.create(produto);
+	public ProdutoVO create(ProdutoVO produto) {
+			return services.create(produto);
 	}
 	
 	

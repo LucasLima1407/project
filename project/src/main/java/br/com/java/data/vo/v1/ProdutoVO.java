@@ -3,24 +3,30 @@ package br.com.java.data.vo.v1;
 import java.io.Serializable;
 import java.util.Objects;
 
+import org.springframework.hateoas.RepresentationModel;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.github.dozermapper.core.Mapping;
+
 import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
-
-public class ProdutoVO implements Serializable{
+@Table
+@JsonPropertyOrder({"id","nome","codigo","preco","marca","quantidade"})
+public class ProdutoVO extends RepresentationModel<ProdutoVO> implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
 	
 	
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@JsonProperty("id")
+	@Mapping("id")
 	public long key;
 	@Column(nullable = false, length = 40)
 	public String nome;
+	@Column(nullable = false, length = 8)
+	public int codigo;
 	@Column(nullable = false)
 	public double preco;
 	@Column(nullable = false, length = 40)
@@ -58,23 +64,16 @@ public class ProdutoVO implements Serializable{
 	public void setKey(long key) {
 		this.key = key;
 	}
-	@Override
-	public int hashCode() {
-		return Objects.hash(key, marca, nome, preco, quantidade);
+	public int getCodigo() {
+		return codigo;
 	}
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		ProdutoVO other = (ProdutoVO) obj;
-		return key == other.key && Objects.equals(marca, other.marca) && Objects.equals(nome, other.nome)
-				&& Double.doubleToLongBits(preco) == Double.doubleToLongBits(other.preco)
-				&& quantidade == other.quantidade;
+	public void setCodigo(int codigo) {
+		this.codigo = codigo;
 	}
+	
+	
+	
+	
 	
 	
 			

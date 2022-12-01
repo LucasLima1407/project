@@ -26,7 +26,7 @@ public class AdminServices {
 		@Autowired
 		public AdminRepository repository;
 		
-	public List<AdminVO> findAll() {
+	/*public List<AdminVO> findAll() {
 
 		logger.info("Finding all admin!");
 
@@ -73,6 +73,6 @@ public void delete(Long id) {
 	var entity = repository.findById(id)
 			.orElseThrow(() -> new ResourceNotFoundException("No records found for this ID!"));
 	repository.delete(entity);
-}
+}*/
 	
 }

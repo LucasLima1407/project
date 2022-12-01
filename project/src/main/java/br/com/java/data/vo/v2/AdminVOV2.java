@@ -11,7 +11,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.github.dozermapper.core.Mapping;
 
 @JsonPropertyOrder({"id","login","senha","nome","date"})
-public class AdminVOV2 extends RepresentationModel<AdminVOV2> implements Serializable{
+public class AdminVOV2 implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
 	

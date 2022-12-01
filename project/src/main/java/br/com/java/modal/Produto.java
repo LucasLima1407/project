@@ -9,7 +9,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
-
+@Entity
 public class Produto implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
@@ -27,6 +27,9 @@ public class Produto implements Serializable{
 	public String marca;
 	@Column(nullable = false)
 	public int quantidade;
+	@Column(nullable = false, length = 8)
+	public int codigo;
+	
 	public long getId() {
 		return id;
 	}
@@ -57,9 +60,15 @@ public class Produto implements Serializable{
 	public void setQuantidade(int quantidade) {
 		this.quantidade = quantidade;
 	}
+	public int getCodigo() {
+		return codigo;
+	}
+	public void setCodigo(int codigo) {
+		this.codigo = codigo;
+	}
 	@Override
 	public int hashCode() {
-		return Objects.hash(id, marca, nome, preco, quantidade);
+		return Objects.hash(codigo, id, marca, nome, preco, quantidade);
 	}
 	@Override
 	public boolean equals(Object obj) {
@@ -70,7 +79,8 @@ public class Produto implements Serializable{
 		if (getClass() != obj.getClass())
 			return false;
 		Produto other = (Produto) obj;
-		return id == other.id && Objects.equals(marca, other.marca) && Objects.equals(nome, other.nome)
+		return codigo == other.codigo && id == other.id && Objects.equals(marca, other.marca)
+				&& Objects.equals(nome, other.nome)
 				&& Double.doubleToLongBits(preco) == Double.doubleToLongBits(other.preco)
 				&& quantidade == other.quantidade;
 	}
